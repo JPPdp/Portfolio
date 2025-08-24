@@ -1,4 +1,7 @@
 @import "tailwindcss";
+html, body {
+  cursor: none; /* Hide default cursor */
+}
 
 :root {
   --background: #ffffff;
@@ -18,9 +21,61 @@
     --foreground: #ededed;
   }
 }
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 10s ease infinite;
+}
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+/* palette + base */
+.bg-obsidian { background: #07070b; }
+
+/* super subtle grid, masked so it never looks noisy */
+.bg-grid-mask {
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,.06) 1px, transparent 1px);
+  background-size: 28px 28px, 28px 28px;
+  mask-image: radial-gradient(ellipse at 50% 40%, black 40%, transparent 75%);
+}
+.custom-cursor {
+  position: fixed;
+  border-radius: 9999px;
+  pointer-events: none;
+  transition: width 0.25s ease, height 0.25s ease, background 0.25s ease, transform 0.1s ease;
+  mix-blend-mode: difference;
+  will-change: transform;
+}
+/* conic ring behind the project stack */
+.bg-conic {
+  background: conic-gradient(
+    from 180deg at 50% 50%,
+    rgba(139,92,246,.28),
+    rgba(236,72,153,.22),
+    rgba(59,130,246,.22),
+    rgba(139,92,246,.28)
+  );
+  filter: blur(54px);
+  opacity: .6;
+}
+
+/* 3D helpers */
+.perspective-1200 { perspective: 1200px; }
+.preserve-3d { transform-style: preserve-3d; }
+.photoshop-page {
+  cursor: default !important;
+}
+
+.other-page {
+  cursor: default !important;
 }
