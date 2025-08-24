@@ -4,17 +4,25 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Reorder } from "framer-motion";
 import { FiMove, FiEdit, FiType, FiZoomIn, FiLayers, FiX } from "react-icons/fi";
 
-const projects = [
-  { id: 1, name: "BillWise SaaS", tech: "Next.js • Node • PostgreSQL", desc: "Subscription billing platform with Stripe & invoices." },
-  { id: 2, name: "AI NPC System", tech: "Unity • GPT • C#", desc: "AI-driven NPC dialogues using GPT." },
-  { id: 3, name: "ISP Billing App", tech: "Flutter • Sheets • Bluetooth", desc: "Collector app for ISP with Google Sheets backend." },
+type Project = {
+  id: number;
+  name: string;
+  tech: string;
+  desc: string;
+  visible?: boolean;
+};
+
+const projects: Project[] = [
+  { id: 1, name: "BillWise SaaS", tech: "Next.js • Node • PostgreSQL", desc: "Subscription billing platform with Stripe & invoices.", visible: true },
+  { id: 2, name: "AI NPC System", tech: "Unity • GPT • C#", desc: "AI-driven NPC dialogues using GPT.", visible: true },
+  { id: 3, name: "ISP Billing App", tech: "Flutter • Sheets • Bluetooth", desc: "Collector app for ISP with Google Sheets backend.", visible: true },
 ];
 
 export default function PhotoshopPortfolio() {
   const [activeTool, setActiveTool] = useState("Move");
   const [zoom, setZoom] = useState(100);
   const [layers, setLayers] = useState(projects);
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const [activeTab, setActiveTab] = useState("portfolio.psd");
   const tabs = ["portfolio.psd", "resume.psd", "about.psd"];
